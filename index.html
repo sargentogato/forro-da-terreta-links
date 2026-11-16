@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1b1a2e">
+<title>Forró da Terreta · Enlaces</title>
+<style>
+  :root {
+    --bg: #1b1a2e;
+    --bg2: #26243f;
+    --text: #fff8ec;
+    --muted: #cfc8e6;
+    --amarillo: #ffc93c;
+    --verde: #2ec4a0;
+    --azul: #3d8bfd;
+    --naranja: #ff7a3d;
+    --mostaza: #d9a12b;
+    --rosa: #ff5d8f;
+    --radius: 22px;
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg: #fff6e4; --bg2: #ffffff; --text: #2a2540; --muted: #6b6485; }
+    meta[name=theme-color] { content: "#fff6e4"; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at 12% 0%, rgba(255,122,61,.28), transparent 45%),
+      radial-gradient(circle at 92% 8%, rgba(61,139,253,.25), transparent 40%),
+      radial-gradient(circle at 50% 100%, rgba(46,196,160,.20), transparent 50%),
+      var(--bg);
+    min-height: 100vh;
+    padding: 0 16px calc(40px + env(safe-area-inset-bottom));
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+
+  /* Cabecera */
+  header { text-align: center; padding: 38px 0 20px; }
+  h1 { font-size: clamp(1.9rem, 7vw, 2.8rem); line-height: 1.05; letter-spacing: -.02em; }
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--amarillo), var(--naranja), var(--rosa));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub { color: var(--muted); margin-top: 8px; font-size: 1.02rem; }
+
+  /* Buscador y filtros */
+  .search {
+    margin: 22px 0 14px; width: 100%; padding: 15px 18px 15px 48px;
+    border-radius: 999px; border: 2px solid transparent; font-size: 1rem;
+    color: var(--text); background: var(--bg2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%23999' stroke-width='2.4' stroke-linecap='round' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 18px center;
+    box-shadow: 0 4px 16px rgba(0,0,0,.18); outline: none;
+  }
+  .search:focus { border-color: var(--amarillo); }
+  .chips { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px 12px; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: none; border: 0; cursor: pointer; padding: 10px 16px; border-radius: 999px;
+    font: inherit; font-weight: 600; font-size: .92rem; color: var(--text); background: var(--bg2);
+    box-shadow: 0 2px 8px rgba(0,0,0,.15); transition: transform .15s;
+  }
+  .chip:active { transform: scale(.95); }
+  .chip.on { color: #1b1a2e; background: var(--amarillo); }
+
+  /* Secciones */
+  section { margin-top: 26px; }
+  section h2 { font-size: 1.15rem; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  section h2::after { content: ""; flex: 1; height: 3px; border-radius: 3px; background: var(--c); opacity: .55; }
+  .grid { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 380px) { .grid { grid-template-columns: 1fr; } }
+  @media (min-width: 620px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+  /* Tarjetas */
+  a.card {
+    display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: inherit;
+    padding: 16px; border-radius: var(--radius); min-height: 132px;
+    background: linear-gradient(160deg, color-mix(in srgb, var(--c) 30%, var(--bg2)), var(--bg2) 75%);
+    border: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
+    box-shadow: 0 6px 18px rgba(0,0,0,.2);
+    transition: transform .15s, box-shadow .15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  a.card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.3); }
+  a.card:active { transform: scale(.97); }
+  .ico {
+    width: 48px; height: 48px; border-radius: 15px; display: grid; place-items: center;
+    font-size: 26px; background: var(--c); box-shadow: 0 4px 10px color-mix(in srgb, var(--c) 55%, transparent);
+  }
+  .card b { font-size: 1rem; line-height: 1.2; }
+  .card small { color: var(--muted); font-size: .8rem; line-height: 1.3; }
+  .card .tag { margin-top: auto; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--c); }
+  .pendiente { opacity: .6; }
+  .empty { text-align: center; color: var(--muted); padding: 40px 0; display: none; }
+  footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 42px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Forró <em>da Terreta</em></h1>
+    <p class="sub">Todo lo de la asociación, a un toque 🧡</p>
+  </header>
+
+  <input class="search" id="q" type="search" placeholder="Buscar: actas, fotos, logo…" aria-label="Buscar">
+  <nav class="chips" id="chips"></nav>
+
+  <main id="main"></main>
+  <p class="empty" id="empty">No hay nada con ese nombre 🤷</p>
+
+  <footer>Hecho con cariño por la comunidad de Forró da Terreta · Valencia</footer>
+</div>
+
+<script>
+/* =========================================================
+   EDITA AQUÍ LOS ENLACES
+   - url: pega el enlace de Drive (o "" si aún no existe: saldrá en gris)
+   - icon: cualquier emoji
+   - color: amarillo, verde, azul, naranja, mostaza, rosa
+   ========================================================= */
+const COLORS = {
+  amarillo: "#ffc93c", verde: "#2ec4a0", azul: "#3d8bfd",
+  naranja: "#ff7a3d", mostaza: "#d9a12b", rosa: "#ff5d8f"
+};
+
+const SECTIONS = [
+  { title: "Asociación", icon: "🏛️", color: "azul", links: [
+    { name: "Actas", desc: "Reuniones y asambleas", icon: "📝", url: "https://drive.google.com/drive/folders/1za6wqp43ljjLEQpa8-IB6sMEvX9qY1Qo?usp=drive_link", tag: "Drive" },
+    { name: "Estatutos", desc: "Los estatutos de la asociación", icon: "📜", url: "", tag: "Drive" },
+    { name: "Misión, visión y valores", desc: "Quiénes somos", icon: "🌟", url: "https://drive.google.com/drive/folders/1Z-G03uqsbcVLxlnjgY0d6MD5v9XiDJ_Y?usp=sharing", tag: "Drive" },
+    { name: "Organigrama y comisiones", desc: "Quién hace qué", icon: "🧩", url: "", tag: "Drive" }
+  ]},
+  { title: "Eventos", icon: "🎉", color: "naranja", links: [
+    { name: "Calendario", desc: "Próximos socials y eventos", icon: "📅", url: "https://calendar.google.com/calendar/u/0?cid=Zm9ycm9kYXRlcnJldGFAZ21haWwuY29t", tag: "Google Calendar" },
+    { name: "Álbum colaborativo", desc: "Sube tus fotos y vídeos, ¡entre todxs!", icon: "📸", url: "", tag: "Google Fotos" },
+    { name: "Carteles", desc: "Diseños para compartir", icon: "🎨", url: "", tag: "Drive" }
+  ]},
+  { title: "Organización", icon: "🗂️", color: "verde", links: [
+    { name: "Tablero Trello", desc: "Tareas y propuestas", icon: "✅", url: "https://trello.com/b/FotPPlkg/forr%C3%B3-da-terreta-nuevo", tag: "Trello" },
+    { name: "Cuentas y cuotas", desc: "Tesorería", icon: "💶", url: "", tag: "Drive" },
+    { name: "Socios y socias", desc: "Lista de miembros", icon: "🤝", url: "", tag: "Drive" }
+  ]},
+  { title: "Comunidad", icon: "💬", color: "rosa", links: [
+    { name: "Grupo de WhatsApp", desc: "Únete a la comunidad", icon: "💚", url: "", tag: "WhatsApp" },
+    { name: "Instagram", desc: "@forrodaterreta", icon: "📷", url: "", tag: "Instagram" }
+  ]},
+  { title: "Marca", icon: "🎨", color: "amarillo", links: [
+    { name: "Logo", desc: "Propuestas y versión final", icon: "🖼️", url: "https://drive.google.com/drive/folders/1ad2bhE6hCMn-ifwlGvzEIHQIZ-l_2ulr?usp=sharing", tag: "Drive" },
+    { name: "Web de la asociación", desc: "Nuestra página oficial", icon: "🌐", url: "", tag: "Web" }
+  ]}
+];
+
+/* ------------------ no hace falta tocar nada de aquí abajo ------------------ */
+const main = document.getElementById("main");
+const chips = document.getElementById("chips");
+const q = document.getElementById("q");
+const empty = document.getElementById("empty");
+let active = "Todo";
+
+const esc = s => s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+
+function render() {
+  const term = norm(q.value.trim());
+  let html = "", shown = 0;
+  for (const sec of SECTIONS) {
+    if (active !== "Todo" && sec.title !== active) continue;
+    const links = sec.links.filter(l => !term || norm(l.name + " " + l.desc).includes(term));
+    if (!links.length) continue;
+    shown += links.length;
+    html += `<section style="--c:${COLORS[sec.color]}"><h2>${sec.icon} ${esc(sec.title)}</h2><div class="grid">` +
+      links.map(l => {
+        const c = COLORS[l.color] || COLORS[sec.color];
+        const ok = !!l.url;
+        return `<a class="card ${ok ? "" : "pendiente"}" style="--c:${c}" ${ok ? `href="${esc(l.url)}" target="_blank" rel="noopener"` : `role="link" aria-disabled="true" title="Enlace pendiente"`}>
+          <div class="ico">${l.icon}</div><b>${esc(l.name)}</b><small>${esc(l.desc)}</small>
+          <span class="tag">${ok ? esc(l.tag) : "Próximamente"}</span></a>`;
+      }).join("") + `</div></section>`;
+  }
+  main.innerHTML = html;
+  empty.style.display = shown ? "none" : "block";
+}
+
+function renderChips() {
+  chips.innerHTML = ["Todo", ...SECTIONS.map(s => s.title)].map(t =>
+    `<button class="chip ${t === active ? "on" : ""}" data-t="${esc(t)}">${t}</button>`).join("");
+}
+chips.addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  active = b.dataset.t; renderChips(); render();
+});
+q.addEventListener("input", render);
+renderChips(); render();
+</script>
+</body>
+</html>
